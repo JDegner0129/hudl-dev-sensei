@@ -26,7 +26,7 @@ $(function() {
                 if (user.email) {
                    wufooUrl += '&field2=' + encodeURIComponent(user.email); 
                 }
-                
+            }).always(function() {
                 window.location.assign(wufooUrl);
             });
         } else {
