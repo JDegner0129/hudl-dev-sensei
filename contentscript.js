@@ -1,14 +1,5 @@
-if (window == top) {
-    console.log('is it working?');
-    chrome.extension.onRequest.addListener(function(req, sender, sendResponse) {
-        sendResponse(bindDOM(sender.url));    
-    });
-}
-
-var buildDOM = function(url) {
-    console.log('building dom!');
-    var re = /https:\/\/github.com\/hudl\/([a-z]+)\/pull\/([0-9]+)/i;
-    var wufooUrl = 'https://hudl.wufoo.com/forms/dev-sensei-nomination/';
+$(function() {
+    var wufooUrl = 'https://hudl.wufoo.com/forms/dev-sensei-nomination/def/field13=' + encodeURI(window.location.href);
 
     var nominateButtonHtml = '<button type="button" class="minibutton nominate-button">Nominate!</button>';
     var nominateSidebarHtml = ' \
@@ -17,19 +8,28 @@ var buildDOM = function(url) {
                                     nominateButtonHtml +
                                 '</div>';
 
-    if(url.match(re)) {
-        wufooUrl += 'field10=' + url;
+    var currentUser = $('#user-links').find('.name').text().trim();
 
-        //TODO: pretty sure I can get the GitHub username from the DOM and use the API
-        //to retrieve their email
+    $.get('https://api.github.com/users/' + currentUser, function(user) {
+        wufooUrl += '&field1=' + encodeURIComponent(user.email);
+    });
 
-        $('.discussion-sidebar').prepend(nominateSidebarHtml);
-        $('.timeline-comment-actions').prepend(nominateButtonHtml);
-        $('.nominate-button').click(function() {
+    $('.discussion-sidebar').prepend(nominateSidebarHtml);
+    $('.timeline-comment:not(.timeline-comment-current-user) .timeline-comment-actions').prepend(nominateButtonHtml);
+    $('.nominate-button').click(function() {
+        var parents = $(this).parents('.timeline-comment-header');
+        if (parents && parents.length) {
+            var nominee = parents.first().find('.author').text().trim();
+
+            $.get('https://api.github.com/users/' + nominee, function(user) {
+                if (user.email) {
+                   wufooUrl += '&field2=' + encodeURIComponent(user.email); 
+                }
+                
+                window.location.assign(wufooUrl);
+            });
+        } else {
             window.location.assign(wufooUrl);
-        });
-        return true;
-    }
-
-    return false;
-};
+        }
+    });
+});

@@ -3,16 +3,10 @@
     "name": "hudl-dev-sensei",
     "version": "0.1.0",
     "description": "Adds a Nomination button to Hudl pull requests.",
-    "background": {
-        "scripts": ["background.js"]
-    },
     "content_scripts": [{
-        "matches": ["https://github.com/hudl/*/pulls/*"],
-        "js": ["jquery.min.js", "contentscript.js"]
+        "matches": ["https://github.com/hudl/*/pull/*"],
+        "js": ["jquery.min.js", "contentscript.js"],
+        "run_at": "document_end"
     }],
-    "author": "Jordan Degner", 
-    "permissions": [
-        "tabs",
-        "https://github.com/hudl/*/pull/*"
-    ]
+    "author": "Jordan Degner"
 }
