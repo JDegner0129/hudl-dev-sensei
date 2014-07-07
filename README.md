@@ -7,8 +7,8 @@ button is clicked. Because of the nature of the API, only accounts with publicly
 filled in.
 
 ### Installing
-To install this extension and check it out yourself, simply download the [hudl-dev-sensei.crx](https://github.com/JDegner0129/hudl-dev-sensei/blob/master/hudl-dev-sensei.crx)
-file and drag it into your [extensions page](chrome://extensions). *NOTE: Simply downloading the file and hitting 'Install' will not work.* Once the extension is installed, 
+To install this extension and check it out yourself, download the [hudl-dev-sensei.crx](https://github.com/JDegner0129/hudl-dev-sensei/blob/master/hudl-dev-sensei.crx)
+file and drag it into your [extensions page](chrome://extensions). *NOTE: hitting 'Install' on the downloaded file will not work.* Once the extension is installed, 
 go to any Hudl pull request and check it out! You should see a "Nominate!" button in the pull request's sidebar, as well as on every comment in the pull request.
 
 ### Developing
