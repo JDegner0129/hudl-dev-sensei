@@ -2,7 +2,7 @@ $(function() {
     var wufooUrl = 'https://hudl.wufoo.com/forms/dev-sensei-nomination/def/field13=' + encodeURI(window.location.href);
     var usersApiUrl = 'https://api.github.com/users/'
 
-    var nominateButtonHtml = '<button type="button" class="minibutton nominate-button">Nominate!</button>';
+    var nominateButtonHtml = '<button type="button" class="btn btn-sm nominate-button">Nominate!</button>';
     var nominateSidebarHtml = ' \
                                 <div class="discussion-sidebar-item sidebar-nominate"> \
                                     <h3 class="discussion-sidebar-heading">Dev Sensei Nomination</h3>' +

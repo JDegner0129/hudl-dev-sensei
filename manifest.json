@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "hudl-dev-sensei",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Adds a Nomination button to Hudl pull requests.",
     "content_scripts": [{
         "matches": ["https://github.com/hudl/*/pull/*"],
